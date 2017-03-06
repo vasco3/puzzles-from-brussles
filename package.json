@@ -4,7 +4,11 @@
   "description": "Puzzle game",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "build": "next build",
+    "dev": "next",
+    "start": "next start",
+    "test": "test",
+    "types": "flow check ./pages"
   },
   "repository": {
     "type": "git",
@@ -20,6 +24,12 @@
   },
   "homepage": "https://github.com/vasco3/puzzles-from-brussles#readme",
   "dependencies": {
-    "next": "^1.2.3"
+    "next": "^1.2.3",
+    "react-dnd": "^2.2.4",
+    "react-dnd-html5-backend": "^2.2.4"
+  },
+  "devDependencies": {
+    "flow-bin": "^0.41.0",
+    "immutable": "^3.8.1"
   }
 }
