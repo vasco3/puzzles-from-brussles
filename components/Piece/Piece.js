@@ -17,11 +17,19 @@ function collect(connect, monitor) {
 }
 
 function Piece(props) {
+  const posX = 62 * (props.piece.id % 8);
+  const posY = 62 * Math.floor(props.piece.id / 8);
+
   return props.connectDragSource(
     <div className={css} style={{
+      backgroundImage: `url(${props.pictureUrl || 'https://im.ages.io/8s2vIpeuIn?size=1000x1000'})`,
+      backgroundPosition: `-${posX}px -${posY}px`,
+      backgroundSize: '500px 500px',
+      height: '62px',
       opacity: props.isDragging ? 0.5 : 1,
+      width: '62px',
     }}>
-    ♘
+      x
     </div>
   );
 }
