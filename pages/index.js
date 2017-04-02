@@ -3,7 +3,7 @@ import Board from '../components/Board/Board'
 // import Stack from '../components/Stack/Stack'
 
 function generatePieces(length) {
-  return Array.from({ length }, (value, id) => ({id, position: id}))
+  return Array.from({ length }, (value, id) => ({id, container: 'stack'}))
     .sort(() => Math.random() - 0.5)
     .map((piece, index) => ({...piece, position: index}))
 }
@@ -28,7 +28,7 @@ export default class Index extends React.Component {
       case 'MOVEPIECE':
         const pieces = this.state.pieces.map(piece => {
           if (action.piece.id === piece.id) {
-            return { ...piece, position: action.position }
+            return { ...piece, container: 'board', position: action.position }
           }
           return piece
         });
@@ -36,7 +36,7 @@ export default class Index extends React.Component {
         return;
       case 'START':
         this.setState({
-          pieces: generatePieces(10)
+          pieces: generatePieces(64)
         })
         return
       default:
@@ -60,7 +60,7 @@ export default class Index extends React.Component {
   render() {
     const dispatcher = this.dispatcher;
     return (
-      <div style={{ height: '500px', width: '500px' }}>
+      <div>
         <Board dispatcher={dispatcher} pieces={this.state.pieces} />
         <input type="url" defaultValue="" onChange={this.updatePictureUrlInput} placeholder="http://www.images.com/image.png" />
         <button onClick={this.loadPictureUrl}>load picture</button>
