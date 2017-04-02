@@ -1,5 +1,4 @@
 import React from 'react'
-import css from './css';
 import { DropTarget } from 'react-dnd';
 
 const squareTarget = {
@@ -44,8 +43,14 @@ function Square(props) {
   const color = props.black ? 'white' : 'black';
 
   return props.connectDropTarget(
-    <div className={css} style={{ backgroundColor, color }}>
+    <div className="square" style={{ backgroundColor, color }}>
       {props.children}
+      <style jsx>{`
+        .square {
+          height: 100%;
+          width: 100%;
+        }
+      `}</style>
     </div>
   )
 }

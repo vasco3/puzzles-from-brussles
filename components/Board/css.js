@@ -1,8 +1,8 @@
-import { css } from 'glamor'
-
-export default css({
-  display: 'flex',
-  height: '100%',
-  flexWrap: 'wrap',
-  width: '100%',
-})
+export default `
+  .board {
+    display: flex;
+    height: 100%;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+`

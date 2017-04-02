@@ -4,6 +4,8 @@ import Board from '../components/Board/Board'
 
 function generatePieces(length) {
   return Array.from({ length }, (value, id) => ({id, position: id}))
+    .sort(() => Math.random() - 0.5)
+    .map((piece, index) => ({...piece, position: index}))
 }
 
 export default class Index extends React.Component {
@@ -12,7 +14,7 @@ export default class Index extends React.Component {
     this.state = {
       pictureUrl: 'https://im.ages.io/8s2vIpeuIn?size=1000x1000',
       pictureUrlInput: '',
-      pieces: generatePieces(30)
+      pieces: []
     };
     this.dispatcher = this.dispatcher.bind(this);
     this.loadPictureUrl = this.loadPictureUrl.bind(this);
@@ -32,8 +34,13 @@ export default class Index extends React.Component {
         });
         this.setState({ pieces });
         return;
+      case 'START':
+        this.setState({
+          pieces: generatePieces(10)
+        })
+        return
       default:
-        return;
+        return
     }
   }
 
@@ -51,11 +58,13 @@ export default class Index extends React.Component {
   }
 
   render() {
+    const dispatcher = this.dispatcher;
     return (
       <div style={{ height: '500px', width: '500px' }}>
-        <Board dispatcher={this.dispatcher} pieces={this.state.pieces} />
+        <Board dispatcher={dispatcher} pieces={this.state.pieces} />
         <input type="url" defaultValue="" onChange={this.updatePictureUrlInput} placeholder="http://www.images.com/image.png" />
         <button onClick={this.loadPictureUrl}>load picture</button>
+        <button onClick={() => dispatcher({type: 'START'})}>start</button>
       </div>
     )
   }
