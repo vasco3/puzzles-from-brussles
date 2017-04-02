@@ -1,7 +1,7 @@
-import { css } from 'glamor'
 
-export default css({
-  backgroundColor: '#eee',
-  height: '100px',
-  marginTop: '30px',
-})
+export default `
+.stack {
+  background-color: #eee;
+  height: 100px;
+  margin-top: 30px;
+}`

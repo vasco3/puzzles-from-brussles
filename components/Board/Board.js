@@ -3,7 +3,6 @@ import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import Square from '../Square/Square'
 import Piece from '../Piece/Piece'
-import css from './css'
 
 function renderSquare(dispatcher, piece, position) {
   const x = position % 8;
@@ -30,8 +29,16 @@ function Board(props) {
   }
 
   return (
-    <div className={css}>
+    <div className="board">
       {squares}
+      <style jsx>{`
+      .board {
+        display: flex;
+        height: 100%;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+    `}</style>
     </div>
   );
 }

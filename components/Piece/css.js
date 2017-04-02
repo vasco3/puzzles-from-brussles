@@ -1,7 +1,8 @@
-import { css } from 'glamor'
 
-export default css({
-  fontSize: '3em',
-  fontWeight: 'bold',
-  cursor: 'move'
-})
+export default `
+  .piece {
+    font-size: 3em;
+    font-weight: bold;
+    cursor: move;
+  }
+`

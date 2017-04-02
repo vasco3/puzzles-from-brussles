@@ -1,6 +1,5 @@
 import { DragSource } from 'react-dnd';
 import React from 'react'
-import css from './css'
 
 const pieceSource = {
   beginDrag(props) {
@@ -21,7 +20,7 @@ function Piece(props) {
   const posY = 62 * Math.floor(props.piece.id / 8);
 
   return props.connectDragSource(
-    <div className={css} style={{
+    <div className="piece" style={{
       backgroundImage: `url(${props.pictureUrl || 'https://im.ages.io/8s2vIpeuIn?size=1000x1000'})`,
       backgroundPosition: `-${posX}px -${posY}px`,
       backgroundSize: '500px 500px',
@@ -30,6 +29,13 @@ function Piece(props) {
       width: '62px',
     }}>
       x
+      <style jsx>{`
+        .piece {
+          font-size: 3em;
+          font-weight: bold;
+          cursor: move;
+        }
+      `}</style>
     </div>
   );
 }
