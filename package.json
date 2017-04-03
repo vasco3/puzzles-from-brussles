@@ -2,7 +2,6 @@
   "name": "puzzles-from-brussles",
   "version": "1.0.0",
   "description": "Puzzle game",
-  "main": "index.js",
   "scripts": {
     "build": "next build",
     "dev": "next",

@@ -1,11 +1,14 @@
 import React from 'react'
 import { DropTarget } from 'react-dnd';
 
+// Drag and Drop target properties
 const squareTarget = {
+  // square must be empty to be able to receive a drop
   canDrop(props) {
     return !props.piece
   },
 
+  // On drop it will call the action to move piece
   drop(props, monitor) {
     const piece = monitor.getItem();
 
@@ -28,8 +31,12 @@ function collect(connect, monitor) {
 }
 
 function Square(props) {
-  let backgroundColor = props.black ? 'rgba(0, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.3)';
+  // Empty Square color
+  let backgroundColor = props.black ?
+    'rgba(0, 255, 255, 0.1)' :
+    'rgba(255, 255, 255, 0.3)';
 
+  // Square color on different drag and drop scenarios
   if (props.isOver) {
     if (props.canDrop) {
       backgroundColor = 'lime'
@@ -40,11 +47,10 @@ function Square(props) {
     backgroundColor = 'fuchsia'
   }
 
-  const color = props.black ? 'white' : 'black';
-
   return props.connectDropTarget(
-    <div className="square" style={{ backgroundColor, color }}>
+    <div className="square" style={{ backgroundColor }}>
       {props.children}
+
       <style jsx>{`
         .square {
           height: 100%;
