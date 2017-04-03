@@ -28,16 +28,16 @@ function collect(connect, monitor) {
 }
 
 function Square(props) {
-  let backgroundColor = props.black ? 'black' : 'white';
+  let backgroundColor = props.black ? 'rgba(0, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.3)';
 
   if (props.isOver) {
     if (props.canDrop) {
-      backgroundColor = 'green'
+      backgroundColor = 'lime'
     } else {
       backgroundColor = 'red'
     }
   } else if (props.canDrop) {
-    backgroundColor = 'yellow'
+    backgroundColor = 'fuchsia'
   }
 
   const color = props.black ? 'white' : 'black';

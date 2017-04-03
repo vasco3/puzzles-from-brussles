@@ -3,7 +3,7 @@ import Piece from '../Piece/Piece'
 import React from 'react'
 import Square from '../Square/Square'
 
-import { DragDropContext, DropTarget } from 'react-dnd';
+import { DragDropContext } from 'react-dnd';
 
 function Board(props) {
   const piecesByPosition = props.pieces.reduce((positionGraph, piece) => {
@@ -17,15 +17,22 @@ function Board(props) {
     <div className="table">
       <div className="board">
         {
-          Array.from({ length: 64 }, (value, position) => {
-            const x = position % 8;
-            const y = Math.floor(position / 8);
+          Array.from({ length: props.piecesCount }, (value, position) => {
+            const x = position % 10;
+            const y = Math.floor(position / 10);
             const black = (x + y) % 2 === 1;
 
             return (
-              <div key={position} style={{ height: '62.5px', width: '62.5px' }}>
-                <Square black={black} dispatcher={props.dispatcher} piece={piecesByPosition[position]} position={position}>
-                  {piecesByPosition[position] && <Piece dispatcher={props.dispatcher} piece={piecesByPosition[position]} />}
+              <div key={position} style={{ height: '50px', width: '50px' }}>
+                <Square black={black}
+                        dispatcher={props.dispatcher}
+                        piece={piecesByPosition[position]}
+                        position={position}>
+                  {piecesByPosition[position] && (
+                    <Piece dispatcher={props.dispatcher}
+                           pictureUrl={props.pictureUrl}
+                           piece={piecesByPosition[position]} />
+                  )}
                 </Square>
               </div>
             );
@@ -37,7 +44,10 @@ function Board(props) {
         <div className="stack-pieces">
         { props.pieces.filter(piece => piece.container === 'stack')
             .map((piece, index) => (
-              <Piece key={piece.container + index} dispatcher={props.dispatcher} piece={piece} />
+              <Piece key={piece.container + index}
+                     dispatcher={props.dispatcher}
+                     pictureUrl={props.pictureUrl}
+                     piece={piece} />
             ))
         }
         </div>
@@ -53,7 +63,7 @@ function Board(props) {
           }
           .stack {
             background-color: #1af;
-            height: 63px;
+            height: 60px;
             margin-top: 20px;
             overflow-x: scroll;
             overflow-y: hidden;

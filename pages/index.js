@@ -1,6 +1,6 @@
 import React from 'react'
+import Head from 'next/head'
 import Board from '../components/Board/Board'
-// import Stack from '../components/Stack/Stack'
 
 function generatePieces(length) {
   return Array.from({ length }, (value, id) => ({id, container: 'stack'}))
@@ -11,14 +11,14 @@ function generatePieces(length) {
 export default class Index extends React.Component {
   constructor(props) {
     super(props);
+    const piecesCount = 100;
+
     this.state = {
-      pictureUrl: 'https://im.ages.io/8s2vIpeuIn?size=1000x1000',
-      pictureUrlInput: '',
-      pieces: []
+      piecesCount,
+      pictureUrl: '/static/scott-umstattd-93198.jpg',
+      pieces: generatePieces(piecesCount)
     };
     this.dispatcher = this.dispatcher.bind(this);
-    this.loadPictureUrl = this.loadPictureUrl.bind(this);
-    this.updatePictureUrlInput = this.updatePictureUrlInput.bind(this);
   }
 
   dispatcher(payload) {
@@ -34,37 +34,67 @@ export default class Index extends React.Component {
         });
         this.setState({ pieces });
         return;
-      case 'START':
-        this.setState({
-          pieces: generatePieces(64)
-        })
-        return
       default:
         return
     }
   }
 
-  loadPictureUrl() {
-    this.setState({
-      pictureUrl: this.state.pictureUrlInput,
-      pictureUrlInput: '',
-    })
-  }
-
-  updatePictureUrlInput(event = {}) {
-    this.setState({
-      pictureUrlInput: (event.target || {}).value || '',
-    })
-  }
-
   render() {
     const dispatcher = this.dispatcher;
+    const { pictureUrl } = this.state;
     return (
-      <div>
-        <Board dispatcher={dispatcher} pieces={this.state.pieces} />
-        <input type="url" defaultValue="" onChange={this.updatePictureUrlInput} placeholder="http://www.images.com/image.png" />
-        <button onClick={this.loadPictureUrl}>load picture</button>
-        <button onClick={() => dispatcher({type: 'START'})}>start</button>
+      <div className="index">
+        <Head>
+          <title>Puzzles from Brussles</title>
+          <style>{`
+              @import url(https://fonts.googleapis.com/css?family=Macondo);
+
+              body::before {
+                background-image: url(${pictureUrl});
+                background-size: cover;
+                bottom: 0;
+                content: ' ';
+                filter: brightness(4) blur(20px);
+                left: 0;
+                position: fixed;
+                right: 0;
+                top: 0;
+                z-index: -1;
+              }
+            `}
+          </style>
+        </Head>
+
+        <Board dispatcher={dispatcher}
+               piecesCount={this.state.piecesCount}
+               pictureUrl={pictureUrl}
+               pieces={this.state.pieces} />
+
+        <h3 className="courtesy">
+          Image courtesy
+          of <a href="https://unsplash.com/photos/Vy-sy7IiGok" target="_blank">Scott Umstand</a>
+        </h3>
+        <style jsx>{`
+            .courtesy {
+              background-color: rgba(255, 255, 255, 0.5);
+              color: rgba(5, 5, 5, 0.7);
+              font-family: 'Macondo', cursive;
+              padding: 7px 0;
+              text-align: center;
+            }
+
+            .courtesy a {
+              color: rgba(5, 5, 5, 0.9);
+            }
+
+            .index {
+              display: flex;
+              flex-direction: column;
+              margin: 40px auto;
+              width: 500px;
+            }
+          `}
+        </style>
       </div>
     )
   }
