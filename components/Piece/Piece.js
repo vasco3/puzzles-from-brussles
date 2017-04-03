@@ -16,17 +16,17 @@ function collect(connect, monitor) {
 }
 
 function Piece(props) {
-  const posX = 62 * (props.piece.id % 8);
-  const posY = 62 * Math.floor(props.piece.id / 8);
+  const posX = 50 * (props.piece.id % 10);
+  const posY = 50 * Math.floor(props.piece.id / 10);
 
   return props.connectDragSource(
     <div className={`piece ${props.piece.container === 'stack' ? 'stacked' : ''}`} style={{
-      backgroundImage: `url(${props.pictureUrl || 'https://im.ages.io/8s2vIpeuIn?size=1000x1000'})`,
+      backgroundImage: `url(${props.pictureUrl || ''})`,
       backgroundPosition: `-${posX}px -${posY}px`,
       backgroundSize: '500px 500px',
-      height: '62px',
+      height: '50px',
       opacity: props.isDragging ? 0.5 : 1,
-      width: '62px',
+      width: '50px',
     }}>
       <style jsx>{`
         .piece {
@@ -34,11 +34,11 @@ function Piece(props) {
           cursor: move;
           font-size: 3em;
           font-weight: bold;
-          height: 62.5px;
-          width: 62.5px;
+          height: 50px;
+          width: 50px;
         }
         .stacked {
-          flex: 0 0 62.5px;
+          flex: 0 0 50px;
         }
       `}</style>
     </div>
