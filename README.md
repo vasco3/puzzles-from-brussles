@@ -1,5 +1,7 @@
 # puzzles-from-brussles
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/vasco3/puzzles-from-brussles.svg)](https://greenkeeper.io/)
+
 > Puzzle game
 
 ## Overview
