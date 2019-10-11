@@ -30,7 +30,7 @@
     "react-dnd": "^2.2.4",
     "react-dnd-html5-backend": "^2.2.4",
     "react-dom": "^15.4.2",
-    "snyk": "^1.192.3"
+    "snyk": "^1.231.0"
   },
   "devDependencies": {
     "flow-bin": "^0.41.0",

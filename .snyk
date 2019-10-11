@@ -453,3 +453,12 @@ patch:
         patched: '2019-07-07T07:49:14.736Z'
     - next > babel-core > babel-register > babel-core > babel-helpers > babel-template > babel-traverse > babel-types > lodash:
         patched: '2019-07-07T07:49:14.736Z'
+  SNYK-JS-HTTPSPROXYAGENT-469131:
+    - snyk > proxy-agent > https-proxy-agent:
+        patched: '2019-10-06T07:43:55.401Z'
+    - snyk > proxy-agent > pac-proxy-agent > https-proxy-agent:
+        patched: '2019-10-06T07:43:55.401Z'
+    - next > glob-promise > semantic-release > github > https-proxy-agent:
+        patched: '2019-10-06T07:43:55.401Z'
+    - next > glob-promise > semantic-release > @semantic-release/condition-travis > github > https-proxy-agent:
+        patched: '2019-10-06T07:43:55.401Z'
